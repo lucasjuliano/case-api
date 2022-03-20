@@ -51,12 +51,7 @@
   (POST "/brokers/:broker-id/quotes" req (endpoint-wrapper req l.domain/create-quote!))
   (POST "/brokers/:broker-id/policies" req (endpoint-wrapper req l.domain/create-policy!))
   (GET "/brokers/:broker-id/policies/:policy-id" req (endpoint-wrapper req l.domain/get-policy!))
-  (POST "/teste/:teste-id" req (endpoint-wrapper req (fn [n] (println n))))
-
-  ;; (POST "/brokers" req (endpoint-wrapper (apply l.domain/create-broker! ((juxt :first_name :last_name) (:params req)))))
-  ;; (POST "/brokers/:broker-id/quotes" [broker-id :as req] (endpoint-wrapper (l.domain/create-quote! broker-id (:age (:params req)) (:sex (:params req)))))
-  ;; (POST "/brokers/:broker-id/policies" [broker-id :as req] (endpoint-wrapper (l.domain/create-policy! broker-id (:quotation_id (:params req)) (:name (:params req)) (:sex (:params req)) (:date_of_birth (:params req)))))
-  ;; (GET "/brokers/:broker-id/policies/:policy-id" [broker-id policy-id :as req] (endpoint-wrapper (l.domain/get-policy! broker-id policy-id)))
+  (POST "/teste/:teste-id" req (println (System/getenv "CASE_API_KEY")))
   (route/not-found "Error, page not found!"))
 
 (defn -main
@@ -64,5 +59,5 @@
   [& args]
   (let [port (Integer/parseInt (or (System/getenv "PORT") "3000"))]
     (server/run-server (wrap-defaults #'app-routes api-defaults) {:port port})
-    (println (str "Running webserver at http:/127.0.0.1:" port "/"))))
+    (println (str "Running webserver at http:/localhost:" port "/"))))
       

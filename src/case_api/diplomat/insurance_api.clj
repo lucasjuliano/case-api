@@ -10,7 +10,6 @@
   (clj-json/read-str json :key-fn keyword))
 
 (def case-api-key (System/getenv "CASE_API_KEY"))
-;; (def case-api-key "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrVERSeXlQcG5QQnJEemQiLCJhY2NvdW50LWlkIjoiYmIzNTI1ZWUtM2NhMi00NmQ1LTlhYTItYTkxNmZmODhlNTBmIn0.xPsGazEv0n22QQiTs_ccKhJGUA9A08t4Kzx8kQFTUMc")
 
 (defn -request
   [request-type body endpoint]
