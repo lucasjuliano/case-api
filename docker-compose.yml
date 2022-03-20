@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  clojure:
+    container_name: case-api-server
+    image: case-api-clj
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+     - clojure-network
+   
+  # postgres:
+  #   container_name: postgres-case-api
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: "clojure"
+  #     POSTGRES_PASSWORD: "clojure!"
+  #     APP_DB_USER: "docker"
+  #     APP_DB_PASS: "docker"
+  #     APP_DB_NAME: "docker"
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - ./bd_init:/docker-entrypoint-initdb.d/
+  #   networks:
+  #     - clojure-network
+
+
+  # pgadmin:
+  #   container_name: pgadmin-case-api
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: "admin@clj.com"
+  #     PGADMIN_DEFAULT_PASSWORD: "clojure!"
+  #   ports:
+  #     - "15432:80"
+  #   networks:
+  #     - clojure-network
+
+networks:
+  clojure-network:
+    driver: bridge
+    
